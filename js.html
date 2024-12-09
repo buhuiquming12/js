@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>个人基本资料</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+        .time-display {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid black;
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        .left-nav {
+            width: 150px;
+            border: 1px solid black;
+            padding: 10px;
+            float: left;
+        }
+        .left-nav a {
+            /* display: block; */
+            /* text-decoration: none; */
+            /* color: black; */
+            margin: 5px 0;
+        }
+        .main-content {
+            margin-left: 170px;
+            width: 80%;
+        }
+        .profile-section {
+            border: 1px solid black;
+            padding: 20px;
+        }
+        .profile-header {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        .form-container {
+            border: 1px solid black;
+            padding: 20px;
+            width: 75%
+        }
+        .form-row {
+            margin: 10px 0;
+        }
+        input[type="text"],
+        input[type="email"],
+        input[type="number"] {
+            width: 150px;
+            margin-right: 20px;
+            padding: 3px;
+        }
+        .hobbies-section {
+            margin: 10px 0;
+        }
+        .hobbies-buttons {
+            margin: 10px 0;
+        }
+        .select-container {
+            display: flex;
+            align-items: center;
+            margin: 20px 0;
+        }
+        .select-box {
+            width: 150px;
+            height: 150px;
+            margin: 0 10px;
+        }
+        .transfer-buttons {
+            display: flex;
+            flex-direction: column;
+            margin: 0 10px;
+        }
+        .transfer-buttons button {
+            width: 30px;
+            margin: 2px 0;
+        }
+        .explanation {
+            border: 1px solid black;
+            padding: 20px;
+            margin-top: 20px;
+        }
+        .image-section {
+            border: 1px solid black;
+            margin: 10px;
+            text-align: center;
+            width: 306px; 
+            display: inline-block; 
+        }
+        .profile-image {
+            width: 100%; 
+            height: auto; 
+        }
+        .file-buttons {
+            margin-top: 10px; 
+        }
+        button {
+            margin: 0 5px; 
+        }
+        .file-buttons {
+            margin-top: 10px;
+        }
+        .content-section {
+            width: 100%;
+        }
+        .left-nav a.active {
+            background-color: #f0f0f0;
+            font-weight: bold;
+        }
+        .highlight {
+            background-color: yellow;
+            font-weight: bold;
+        }
+        .rotating-image-container {
+            border: 1px solid black;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .rotating-image {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+        }
+    </style>
+</head>
+<body>
+    <div class="time-display">
+        <div id="time"></div>
+        <div>
+            <input type="search" placeholder="搜索" oninput="searchContent(this.value)">
+            <input type="submit" value="search">
+        </div>
+    </div>
+
+    <div class="left-nav">
+        <a href="#" onclick="switchContent('basic')" class="active">基本资料</a><br>
+        <a href="#" onclick="switchContent('career')">职业理想</a>
+    </div>
+
+    <div class="main-content">
+        <div id="basicContent" class="content-section" >
+            <div class="profile-section">
+                <div class="profile-header">个人基本资料</div>
+                <div style="display: flex;">
+                <div class="form-container">
+                    <div class="form-row">
+                        <label>昵称：</label>
+                        <input type="text">
+                        <label>邮箱：</label>
+                        <input type="email">
+                    </div>
+                    <div class="form-row">
+                        <label>生日：</label>
+                        <input type="text">
+                        <label>年龄：</label>
+                        <input type="number" >
+                    </div>
+
+                    <div class="hobbies-section">
+                        <label>爱好：</label><br>
+                        <input type="checkbox" id="reading">阅读
+                        <input type="checkbox" id="music">音乐
+                        <input type="checkbox" id="exercise">运动
+                        <input type="checkbox" id="movie">电影
+                        <input type="checkbox" id="food">美食
+                        <input type="checkbox" id="game">网游
+                    </div>
+
+                    <div class="hobbies-buttons">
+                        <button id="selectAll">全选</button>
+                        <button id="cancelAll">取消全选</button>
+                    </div>
+
+                    <div class="form-row">
+                        <label>学历：</label>
+                        <select>
+                            <option>本科</option>
+                            <option>高中</option>
+                            <option>专科</option>
+                            <option>研究生</option>
+                            <option>博士</option>
+                        </select>
+                    </div>
+
+                    <div class="select-container">
+                        <div>
+                            <label>关键词：</label><br>
+                            <select id="leftSelect" class="select-box" multiple>
+                                <option>程序员</option>
+                                <option>C++</option>
+                                <option>Java</option>
+                                <option>JavaScript</option>
+                                <option>深度学习</option>
+                                <option>区块链</option>
+                            </select>
+                        </div>
+                        <div class="transfer-buttons">
+                            <button onclick="moveRight()">></button>
+                            <button onclick="moveAllRight()">>></button>
+                            <button onclick="moveLeft()"><</button>
+                            <button onclick="moveAllLeft()"><<</button>
+                        </div>
+                        <div>
+                            <select id="rightSelect" class="select-box" multiple></select>
+                        </div>
+                    </div>
+
+                    <div>
+                        <input type="reset" value="重置">
+                        <input type="submit" value="提交">
+                    </div>
+                </div>
+                <div class="image-section" style="border: 1px solid black;margin: 10px;padding: 10px;">
+                    <img src="1.png" class="profile-image">
+                    <div class="file-buttons">
+                        <button>选择文件</button>
+                        <button>未选择任何文件</button>
+                    </div>
+                </div>
+                </div>
+                <div class="explanation">
+                    说明： <ol>
+                        <li>权利人对涉嫌侵权内容拥有商标权、著作权和/或其他依法可以行使权利的权属证明。</li>
+                        <li>请充分、明确地描述确信被侵犯了权利人合法权益的内容并请提供非法登载该作品的第三方网址。</li>
+                        <li>请指明涉嫌侵权网页的哪些内容侵犯了第2项中列明的权利人的合法权益。</li>
+                        <li>请提供权利人具体的联络信息，包括姓名、身份证或护照复印件（对自然人）、单位登记证明复印件（对单位）、通信地址、电话号码、传真和电子邮件。</li>
+                        <li>请提供涉嫌侵权内容在信息网络上的位置（如指明您举报的含有侵权内容的出处，即：指网页地址或网页内的位置）以便我们与您举报的含有侵权内容的网页的所有权人/管理人联系。</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+        <div id="careerContent" class="content-section" style="display: none;">
+            <div class="profile-section">
+                
+        </div>
+    </div>
+    <div class="rotating-image-container">
+        <img id="rotatingImage" class="rotating-image">
+    </div>
+    <script>
+        function updateTime() {
+            try {
+                const now = new Date();
+               
+                document.getElementById('time').textContent = now;
+            } catch (error) {
+                console.error('时间更新失败:', error);
+                document.getElementById('time').textContent = '时间获取失败';
+            }
+        }
+
+        updateTime();
+        setInterval(updateTime, 1000);
+
+        function setCheckboxes(checked) {
+            document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+                checkbox.checked = checked;
+            });
+        }
+
+        document.getElementById('selectAll').addEventListener('click', () => setCheckboxes(true));
+        document.getElementById('cancelAll').addEventListener('click', () => setCheckboxes(false));
+
+        function moveRight() {
+            const left = document.getElementById('leftSelect');
+            const right = document.getElementById('rightSelect');
+            moveSelectedOptions(left, right);
+        }
+
+        function moveAllRight() {
+            const left = document.getElementById('leftSelect');
+            const right = document.getElementById('rightSelect');
+            moveAllOptions(left, right);
+        }
+
+        function moveLeft() {
+            const left = document.getElementById('leftSelect');
+            const right = document.getElementById('rightSelect');
+            moveSelectedOptions(right, left);
+        }
+
+        function moveAllLeft() {
+            const left = document.getElementById('leftSelect');
+            const right = document.getElementById('rightSelect');
+            moveAllOptions(right, left);
+        }
+
+        function moveSelectedOptions(source, destination) {
+            Array.from(source.selectedOptions).forEach(option => {
+                destination.add(option);
+            });
+        }
+
+        function moveAllOptions(source, destination) {
+            Array.from(source.options).forEach(option => {
+                destination.add(option);
+            });
+        }
+
+        function clearSelected(input) {
+            if(input.value === '') {
+                console.log('搜索已清除');
+            }
+        }
+
+        function switchContent(contentType) {
+            document.querySelectorAll('.content-section').forEach(section => {
+                section.style.display = 'none';
+            });
+            
+            const selectedContent = contentType === 'basic' ? 'basicContent' : 'careerContent';
+            document.getElementById(selectedContent).style.display = 'block';
+            
+            document.querySelectorAll('.left-nav a').forEach(link => {
+                link.classList.remove('active');
+            });
+            event.target.classList.add('active');
+        }
+
+        function searchContent(searchText) {
+            document.querySelectorAll('.highlight').forEach(element => {
+                element.outerHTML = element.innerHTML;
+            });
+            
+            if (searchText.trim() === '') return;
+            
+            const contentArea = document.querySelector('.main-content');
+            
+            const regex = new RegExp(searchText, 'gi');
+            
+            function highlightText(node) {
+                if (node.nodeType === 3) {
+                    const content = node.textContent;
+                    if (regex.test(content)) {
+                        const span = document.createElement('span');
+                        span.innerHTML = content.replace(regex, match => `<span class="highlight">${match}</span>`);
+                        node.parentNode.replaceChild(span, node);
+                    }
+                } else if (node.nodeType === 1) {
+                    node.childNodes.forEach(highlightText);
+                }
+            }
+            
+            highlightText(contentArea);
+        }
+        const images = [
+            'https://picsum.photos/800/300?random=1',
+            'https://picsum.photos/800/300?random=2',
+            'https://picsum.photos/800/300?random=3',
+            'https://picsum.photos/800/300?random=4'
+        ];
+        let currentImageIndex = 0;
+        function rotateImage() {
+            const img = document.getElementById('rotatingImage');
+            img.src = images[currentImageIndex];
+            currentImageIndex = (currentImageIndex + 1) % images.length;
+        }
+        rotateImage();
+        setInterval(rotateImage, 5000);
+    </script>
+</body>
+</html>
